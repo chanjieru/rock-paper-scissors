@@ -32,10 +32,10 @@ function playRound(playerSelection, computerSelection) {
             result = "draw";
         }
     }
-    return output(result);
-  }
+    return result;
+}
 
-function output(result) {
+function output(result, playerSelection, computerSelection) {
     if (result == 'win') {
         return `You won! ${playerSelection} beats ${computerSelection}.`; 
     } else if (result == 'lose') {
@@ -45,6 +45,28 @@ function output(result) {
     }
 }
 
-const playerSelection = "scissors";
-const computerSelection = getComputerChoice();
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    let wins = 0;
+    let losses = 0;
+    for (i = 1; i <= 5; i++) {
+        const playerSelection = prompt("Enter you choice: Rock, Paper or Scissors");
+        const computerSelection = getComputerChoice();
+        let result = playRound(playerSelection, computerSelection);
+        console.log(output(result, playerSelection, computerSelection));
+        if (result == 'win') {
+            wins += 1;
+        } else if (result == 'lose') {
+            losses += 1;
+        }
+    }
+    if (wins > losses) {
+        console.log("Game over. You won!");
+    } else if (losses > wins) {
+        console.log("Game over. You lost:(");
+    } else if (losses == wins) {
+        console.log("Game over. It's a draw!");
+    }
+}
+
+console.log(game());
+
