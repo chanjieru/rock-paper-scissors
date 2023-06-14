@@ -8,8 +8,11 @@ const scores = document.createElement('div');
 const playerScore = document.createElement('div');
 const computerScore = document.createElement('div');
 results.classList.add('text');
+display.classList.add('display');
 scores.classList.add('score-container');
 scores.classList.add('text');
+const playAgain = document.createElement('button');
+playAgain.textContent = "Play Again";
 
 const buttons = Array.from(document.querySelectorAll('button'));
 buttons.forEach(playerSelection =>
@@ -39,10 +42,19 @@ function updateScore(result) {
 function endGame() {
     if (playerWins >= 5) {
         results.textContent = "Congratulations, you won!";
+        display.appendChild(playAgain);
     } else if (computerWins >= 5) {
         results.textContent = "Game over. You lost :(";
+        display.appendChild(playAgain)
     }
 }
+
+playAgain.addEventListener('click', () => {
+    playerWins = 0;
+    computerWins = 0;
+    results.textContent = '';
+    display.removeChild(playAgain);
+})
 
 body.appendChild(display);
 
