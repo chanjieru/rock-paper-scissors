@@ -4,11 +4,12 @@ let computerWins = 0;
 const body = document.querySelector('body');
 const display = document.createElement('div');
 const results = document.createElement('div');
+const scores = document.createElement('div');
 const playerScore = document.createElement('div');
 const computerScore = document.createElement('div');
 results.classList.add('text');
-playerScore.classList.add('text');
-computerScore.classList.add('text');
+scores.classList.add('score-container');
+scores.classList.add('text');
 
 const buttons = Array.from(document.querySelectorAll('button'));
 buttons.forEach(playerSelection =>
@@ -28,9 +29,10 @@ function updateScore(result) {
         computerWins += 1;
     }
     playerScore.textContent = `Your score: ${playerWins}`;
-    display.appendChild(playerScore);
+    scores.appendChild(playerScore);
     computerScore.textContent = `Computer's score: ${computerWins}`;
-    display.appendChild(computerScore);     
+    scores.appendChild(computerScore);
+    results.appendChild(scores);
     endGame();
 }
 
